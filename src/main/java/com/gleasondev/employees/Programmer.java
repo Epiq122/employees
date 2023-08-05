@@ -15,11 +15,9 @@ public class Programmer {
     private int iq = 0;
 
     private final String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?\\n";
-    private final Pattern peoplePat = Pattern.compile(peopleRegex);
 
 
     private final String progRegex = "\\w+=(?<locpd>\\w+),\\w+=(?<yoe>\\w+),\\w+=(?<iq>\\w+)";
-    private final Pattern progPat = Pattern.compile(progRegex);
 
     private final NumberFormat moneyFormat = NumberFormat.getCurrencyInstance();
 
@@ -27,11 +25,13 @@ public class Programmer {
 
 
     public Programmer(String personText) {
+        Pattern peoplePat = Pattern.compile(peopleRegex);
         Matcher peopleMat = peoplePat.matcher(personText);
         if (peopleMat.find()) {
             this.lastName = peopleMat.group("lastName");
             this.firstName = peopleMat.group("firstName");
             this.dob = LocalDate.from(dtFormatter.parse(peopleMat.group("dob")));
+            Pattern progPat = Pattern.compile(progRegex);
             Matcher progMat = progPat.matcher(peopleMat.group("details"));
             if (progMat.find()) {
                 this.linesOfCode = Integer.parseInt(progMat.group("locpd"));
