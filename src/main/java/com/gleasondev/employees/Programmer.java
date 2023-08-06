@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Programmer {
+public class Programmer implements Employee {
     private String lastName;
     private String firstName;
     private LocalDate dob;
@@ -18,7 +18,7 @@ public class Programmer {
 
 
     private final String progRegex = "\\w+=(?<locpd>\\w+),\\w+=(?<yoe>\\w+),\\w+=(?<iq>\\w+)";
-
+    private final Pattern progPat = Pattern.compile(progRegex);
     private final NumberFormat moneyFormat = NumberFormat.getCurrencyInstance();
 
     DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
@@ -31,7 +31,6 @@ public class Programmer {
             this.lastName = peopleMat.group("lastName");
             this.firstName = peopleMat.group("firstName");
             this.dob = LocalDate.from(dtFormatter.parse(peopleMat.group("dob")));
-            Pattern progPat = Pattern.compile(progRegex);
             Matcher progMat = progPat.matcher(peopleMat.group("details"));
             if (progMat.find()) {
                 this.linesOfCode = Integer.parseInt(progMat.group("locpd"));

@@ -29,38 +29,22 @@ public class Main {
         Pattern peoplePat = Pattern.compile(peopleRegex);
         Matcher peopleMat = peoplePat.matcher(peopleText);
 
-        String ceoRegex = "\\w+=(?<avgStockPrice>\\w+)";
-        Pattern ceoPat = Pattern.compile(ceoRegex);
-
 
         int totalSalaries = 0;
-
+        Employee employee = null;
         while (peopleMat.find()) {
-            totalSalaries += switch (peopleMat.group("role")) {
-                case "Programmer" -> {
-                    Programmer programmer = new Programmer(peopleMat.group());
-                    System.out.println(programmer.toString());
+            employee = switch (peopleMat.group("role")) {
+                case "Programmer" -> new Programmer(peopleMat.group());
 
-                    yield programmer.getSalary();
-                }
-                case "Manager" -> {
-                    Manager manager = new Manager(peopleMat.group());
-                    System.out.println(manager.toString());
-                    yield manager.getSalary();
-                }
-                case "Analyst" -> {
-                    Analyst analyst = new Analyst(peopleMat.group());
-                    System.out.println(analyst.toString());
-                    yield analyst.getSalary();
-                }
-                case "CEO" -> {
-                    CEO ceo = new CEO(peopleMat.group());
-                    System.out.println(ceo.toString());
-                    yield ceo.getSalary();
+                case "Manager" -> new Manager(peopleMat.group());
 
-                }
-                default -> 0;
+                case "Analyst" -> new Analyst(peopleMat.group());
+
+                case "CEO" -> new CEO(peopleMat.group());
+                default -> new Nobody();
             };
+            System.out.println(employee.toString());
+            totalSalaries += employee.getSalary();
 
         }
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
