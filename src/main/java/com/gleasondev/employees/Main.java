@@ -41,7 +41,7 @@ public class Main {
                 case "Analyst" -> new Analyst(peopleMat.group());
 
                 case "CEO" -> new CEO(peopleMat.group());
-                default -> null;
+                default -> new Employee(peopleMat.group());
             };
             System.out.println(employee.toString());
             totalSalaries += employee.getSalary();
