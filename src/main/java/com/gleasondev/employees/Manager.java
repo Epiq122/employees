@@ -32,8 +32,5 @@ public class Manager extends Employee {
         return 5000 + organizationSize * directReports;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s, %s: %s", lastName, firstName, moneyFormat.format(getSalary()));
-    }
+
 }

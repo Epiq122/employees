@@ -26,8 +26,5 @@ public class CEO extends Employee {
         return 10000 * averageStockPrice;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+  
 }
