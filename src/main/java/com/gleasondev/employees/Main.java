@@ -21,7 +21,7 @@ public class Main {
                 Flinstone2, Wilma2, 3/3/1910, Analyst, {projectCount=4}
                 Flinstone3, Wilma3, 3/3/1910, Analyst, {projectCount=5}
                 Flinstone4, Wilma4, 3/3/1910, Analyst, {projectCount=6}
-                Flinstone5, Wilma5, 3/3/1910, Adnalyst, {projectCount=10}
+                Flinstone5, Wilma5, 3/3/1910, Addnalyst, {projectCount=10}
                 Rubble, Betty, 4/4/1915, CEO, {avgStockPrice=115}
                 """;
 
@@ -31,19 +31,19 @@ public class Main {
 
         int totalSalaries = 0;
         int totalWithBonus = 0;
-        Employee employee = null;
+        IEmployee employee = null;
         while (peopleMat.find()) {
             employee = Employee.createEmployee(peopleMat.group());
             System.out.println(employee.toString());
             totalSalaries += employee.getSalary();
-            totalWithBonus += employee.getBonus();
+//            totalWithBonus += employee.getBonus();
 
 
         }
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
 
         System.out.printf("The total payout should be %s%n", currencyInstance.format(totalSalaries));
-        System.out.printf("The total payout should be with bonus %s%n", currencyInstance.format(totalWithBonus));
+//        System.out.printf("The total payout should be with bonus %s%n", currencyInstance.format(totalWithBonus));
 
 
         // Record!
