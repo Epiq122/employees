@@ -15,8 +15,16 @@ public abstract class Employee {
     protected String lastName;
     protected String firstName;
     protected LocalDate dob;
-    DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+    protected final DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 
+
+    // this is for our nested class
+    protected Employee() {
+        peopleMat = null;
+        lastName = "N/A";
+        firstName = "N/A";
+        dob = null;
+    }
 
     public Employee(String personText) {
         peopleMat = Employee.PEOPLE_PAT.matcher(personText);
@@ -40,10 +48,10 @@ public abstract class Employee {
                 case "Analyst" -> new Analyst(employeeText);
 
                 case "CEO" -> new CEO(employeeText);
-                default -> null;
+                default -> new DummyEmployee();
             };
         } else {
-            return null;
+            return new DummyEmployee();
         }
 
 
@@ -58,5 +66,16 @@ public abstract class Employee {
     @Override
     public String toString() {
         return String.format("%s, %s: %s - %s", lastName, firstName, moneyFormat.format(getSalary()), moneyFormat.format(getBonus()));
+    }
+
+
+    // nested class
+
+    private static final class DummyEmployee extends Employee {
+
+        @Override
+        public int getSalary() {
+            return 0;
+        }
     }
 }

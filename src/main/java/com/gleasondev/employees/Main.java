@@ -20,7 +20,7 @@ public class Main {
                 Flinstone2, Wilma2, 3/3/1910, Analyst, {projectCount=4}
                 Flinstone3, Wilma3, 3/3/1910, Analyst, {projectCount=5}
                 Flinstone4, Wilma4, 3/3/1910, Analyst, {projectCount=6}
-                Flinstone5, Wilma5, 3/3/1910, Analyst, {projectCount=10}
+                Flinstone5, Wilma5, 3/3/1910, Adnalyst, {projectCount=10}
                 Rubble, Betty, 4/4/1915, CEO, {avgStockPrice=115}
                 """;
 
@@ -33,12 +33,9 @@ public class Main {
         Employee employee = null;
         while (peopleMat.find()) {
             employee = Employee.createEmployee(peopleMat.group());
-
-            if (employee != null) {
-                System.out.println(employee.toString());
-                totalSalaries += employee.getSalary();
-                totalWithBonus += employee.getBonus();
-            }
+            System.out.println(employee.toString());
+            totalSalaries += employee.getSalary();
+            totalWithBonus += employee.getBonus();
 
 
         }
