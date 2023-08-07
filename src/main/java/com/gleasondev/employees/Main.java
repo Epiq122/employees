@@ -27,6 +27,8 @@ public class Main {
 
 
         Matcher peopleMat = Employee.PEOPLE_PAT.matcher(peopleText);
+        Flyer flyer = new CEO("");
+        flyer.fly();
 
 
         int totalSalaries = 0;
