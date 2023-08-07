@@ -48,7 +48,14 @@ public abstract class Employee {
                 case "Analyst" -> new Analyst(employeeText);
 
                 case "CEO" -> new CEO(employeeText);
-                default -> new DummyEmployee();
+
+                // anonymous class
+                default -> new Employee() {
+                    @Override
+                    public int getSalary() {
+                        return 0;
+                    }
+                };
             };
         } else {
             return new DummyEmployee();
@@ -72,10 +79,15 @@ public abstract class Employee {
     // nested class
 
     private static final class DummyEmployee extends Employee {
-
         @Override
         public int getSalary() {
             return 0;
         }
     }
+
+//    private final class MyInnterClass {
+//        public int getStuff() {
+//            System.out.println(firstName);
+//            return 0;
+//        }
 }
