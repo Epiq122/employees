@@ -33,6 +33,29 @@ public class Programmer extends Employee implements Chef, IEmployee {
         return "I am a Yelling at people in the kitchen!";
     }
 
+    public int getLinesOfCode() {
+        return linesOfCode;
+    }
+
+    public void setLinesOfCode(int linesOfCode) {
+        this.linesOfCode = linesOfCode;
+    }
+
+    public int getYearsOfExp() {
+        return yearsOfExp;
+    }
+
+    public void setYearsOfExp(int yearsOfExp) {
+        this.yearsOfExp = yearsOfExp;
+    }
+
+    public int getIq() {
+        return iq;
+    }
+
+    public void setIq(int iq) {
+        this.iq = iq;
+    }
 }
 
 

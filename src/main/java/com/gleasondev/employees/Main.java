@@ -30,6 +30,8 @@ public class Main {
         Flyer flyer = new CEO("");
         flyer.fly();
 
+
+        // default method
         Programmer coder = new Programmer("");
         coder.cook("Steaks");
         coder.cleanUp();
@@ -40,6 +42,15 @@ public class Main {
         IEmployee employee = null;
         while (peopleMat.find()) {
             employee = Employee.createEmployee(peopleMat.group());
+            if (employee instanceof Programmer) {
+                System.out.println(((Programmer) employee).getIq());
+            } else if (employee instanceof Manager mang) {
+                System.out.println(mang.getSalary());
+            } else if (employee instanceof Analyst) {
+                System.out.println();
+            } else if (employee instanceof CEO) {
+                System.out.println();
+            }
             System.out.println(employee.toString());
             totalSalaries += employee.getSalary();
 //            totalWithBonus += employee.getBonus();

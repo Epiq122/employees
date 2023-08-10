@@ -82,7 +82,7 @@ public abstract class Employee implements IEmployee {
         }
     }
 
-//    private final class MyInnterClass {
+//    private final class MyInnerClass {
 //        public int getStuff() {
 //            System.out.println(firstName);
 //            return 0;
