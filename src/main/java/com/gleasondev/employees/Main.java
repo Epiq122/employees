@@ -30,6 +30,10 @@ public class Main {
         Flyer flyer = new CEO("");
         flyer.fly();
 
+        Programmer coder = new Programmer("");
+        coder.cook("Steaks");
+        coder.cleanUp();
+
 
         int totalSalaries = 0;
         int totalWithBonus = 0;

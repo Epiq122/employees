@@ -3,7 +3,7 @@ package com.gleasondev.employees;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Programmer extends Employee {
+public class Programmer extends Employee implements Chef, IEmployee {
     private int linesOfCode = 0;
     private int yearsOfExp = 0;
     private int iq = 0;
@@ -27,6 +27,10 @@ public class Programmer extends Employee {
     public int getSalary() {
 
         return 3000 + linesOfCode * yearsOfExp * iq;
+    }
+
+    public String yellAtPeople() {
+        return "I am a Yelling at people in the kitchen!";
     }
 
 }
