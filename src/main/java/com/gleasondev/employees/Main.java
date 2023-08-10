@@ -2,6 +2,8 @@ package com.gleasondev.employees;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 
 public class Main {
@@ -27,40 +29,26 @@ public class Main {
 
 
         Matcher peopleMat = Employee.PEOPLE_PAT.matcher(peopleText);
-        Flyer flyer = new CEO("");
-        flyer.fly();
-
-
-        // default method
-        Programmer coder = new Programmer("");
-        coder.cook("Steaks");
-        coder.cleanUp();
 
 
         int totalSalaries = 0;
-        int totalWithBonus = 0;
         IEmployee employee = null;
+
+        // list
+        List<IEmployee> employees = new ArrayList<>();
         while (peopleMat.find()) {
             employee = Employee.createEmployee(peopleMat.group());
-            if (employee instanceof Programmer) {
-                System.out.println(((Programmer) employee).getIq());
-            } else if (employee instanceof Manager mang) {
-                System.out.println(mang.getSalary());
-            } else if (employee instanceof Analyst) {
-                System.out.println();
-            } else if (employee instanceof CEO) {
-                System.out.println();
-            }
-            System.out.println(employee.toString());
-            totalSalaries += employee.getSalary();
-//            totalWithBonus += employee.getBonus();
+            employees.add(employee);
+        }
 
-
+        // loop over collection
+        for (IEmployee worker : employees) {
+            System.out.println(worker.toString());
+            totalSalaries += worker.getSalary();
         }
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
 
         System.out.printf("The total payout should be %s%n", currencyInstance.format(totalSalaries));
-//        System.out.printf("The total payout should be with bonus %s%n", currencyInstance.format(totalWithBonus));
 
 
         // Record!
